@@ -1,0 +1,29 @@
+{% extends 'login_base1.html' %}
+{% load static %}
+{% block metadescription %}
+  {% if category %}
+     {{category.desc}}
+  {% else %}
+      Welcome to the hospital
+  {% endif %}
+{% endblock %}
+{% block title %}
+{% if category %}
+   {{category.name }}
+{% else %}
+   Doctor
+{% endif %}
+{% endblock %}
+{% block content %}
+<form action="aboutus" method="post">
+
+           {% csrf_token %}
+             <div class="container">
+                 <br><br>
+           <h3>ABOUT US</h3>
+                 <p>We are the only online doctor consultation platform which provides the facility of consulting first and then paying later. Normally, the patients have doubts about the experience they will have during the video or audio call with the doctor. Also, on every other platform, the fee is charged from the patient before consultation. As a result, the patient is unwilling to go for telemedicine. With this offer, you can keep leave behind your anxieties and go book doctor’s appointment online right away.</p>
+                 <h3>DOCTORS FROM TOP MEDICAL COLLEGES OF INDIA</h3>
+                 <p>We are also the only platform in the country which has doctors trained from top medical colleges of India like AIIMS, PGI and Safdarjung Hospital. So, you can be assured about the quality of doctors on our platform as we maintain high standards when it comes to enrolling doctors on our platform.</p>
+             </div>
+       </form>
+{% endblock %}

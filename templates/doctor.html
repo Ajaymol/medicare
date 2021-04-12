@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+    {{doctor.category}}
+{% endblock %}
+{% block title %}
+     {{doctor.name}}
+{% endblock %}
+{% block content %}
+    <div>
+        <div>
+            <p><a href="{% url 'ecommerceapp:allDoctCat' %}" >Home</a>|<a href="{{doctor.category.get_url}}"></a>{{doctor.name}}</p>
+        </div>
+        <div>
+            <br>
+            <div class="row"  >
+                <div class="col-md-4"   >
+                    <div class="thumbnail"   >
+                         <center>
+                    <img src="{{doctor.img.url}}" alt="{{doctor.name}}" class="img-rounded"   height="250px" width="250px" >
+                 </center>
+                    </div>
+            </div>
+            </div>
+            <div>
+                <div>
+
+                    <h3>{{doctor.name}}</h3>
+                    <h5>Category:{{doctor.category}}</h5>
+                    <h5>Consultation Fees:{{doctor.charge}}</h5>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

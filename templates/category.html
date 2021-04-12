@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+  {% if category %}
+     {{category.desc}}
+  {% else %}
+      Welcome to the hospital
+  {% endif %}
+{% endblock %}
+{% block title %}
+{% if category %}
+   {{category.name }}
+{% else %}
+   Doctor
+{% endif %}
+{% endblock %}
+{% block content %}
+    {% if category %}
+<div>
+    <div>
+        <p><a href="{% url 'ecommerceapp:allDoctCat' %}"> </a><h3>Department :{{category.name}}</h3></p>
+    </div>
+</div>
+    {% endif %}
+
+<div>
+    {% if category %}
+    <img src="{{category.img.url}}" alt="{{category.name}}" width="1400px" height="400px">
+</div><br>
+<div>
+    <h1>{{category.name}}</h1>
+    <p>{{category.desc}}</p>
+</div>
+{% else %}
+<div>
+   <img src="{% static 'img/banner2.jpg' %}" width="1400px" height="400px" >
+</div>
+<br>
+<div>
+    <h1>Why Do You Need Online Doctor Consultation?</h1>
+    <p>Due to risk of corona virus infection, people are afraid to step out of their house, especially to hospitals. Thus, healthcare of the people is getting neglected. Online Doctor Consultation lets you connect with the doctors without the need of stepping out of your home. Online Doctor Appointment ensures that you do not have to wait in the doctor’s lounge anymore.</p><br>
+    <p>Now, you do not need to take a day off from your office to consult yourself or your loved ones. Simply schedule your meeting and save your time and fuel. You can also get best online doctors consultation because the specialist or more experienced doctors might be inaccessible to you due to distance or time.
+
+</p>
+</div>
+{% endif %}
+<div class="container">
+    <div class="row max-auto">
+        {% for doctor in doctors %}
+    <div class="my_bottom_margin col-9 col-sm-12 col-md-4 col-lg-4">
+    <div class="card text-center"  style="width: 16rem; background-color:#5a9c9a" >
+        <center><a href="{{doctor.get_url}}"><img  class="card-img-top my_image" src="{{doctor.img.url}}"  alt="{{doctor.name}}" height="170px" width="150px" ></a></center>
+        <div class="card-body">
+            <h6>{{doctor.name}}</h6>
+            <p>{{doctor.category}}</p>
+        </div>
+    </div>
+
+  </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}
